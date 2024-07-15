@@ -24,3 +24,9 @@ Our whole code needs to be bundled together, needs to be minified, cashed, compr
 - Parcel gives https to test in dev/ local.
 - Tree shaking - Will remove unused code/ functions for you.
 - Different dev and prod bundles
+
+
+# React hooks
+ (Normal JS utility Functions)
+ - useState() - generage state variables
+ - useEffects()
