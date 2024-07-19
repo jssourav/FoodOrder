@@ -7,6 +7,10 @@
     width: 160px;
 }
 
+.nav-items {
+  display: flex;
+}
+
 .nav-items > ul {
     display: flex;
     font-size: 24px;
@@ -110,5 +114,92 @@
 .filter-btn {
     margin: 10px;
     cursor: pointer;
+}
+
+.filter {
+  display: flex;
+  justify-content: center;
+}
+
+
+/* Button */
+
+.login {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.login:hover {
+  background: wheat;
+}
+
+/* src/ShimmerCard.css */
+.shimmer-card {
+  width: 300px; /* Adjust the width as needed */
+  height: 200px; /* Adjust the height as needed */
+  background: #f6f7f8;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  margin: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.shimmer-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.shimmer-card-image {
+  width: 100%;
+  height: 60%;
+  background: #e0e0e0;
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-card-content {
+  padding: 10px;
+}
+
+.shimmer-card-title,
+.shimmer-card-subtitle {
+  width: 100%;
+  height: 20px;
+  background: #e0e0e0;
+  margin-top: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-card-title {
+  width: 70%;
+}
+
+.shimmer-card-subtitle {
+  width: 50%;
+}
+
+.shimmer-card-image::before,
+.shimmer-card-title::before,
+.shimmer-card-subtitle::before {
+  content: '';
+  display: block;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, #f6f7f8 0%, #e9ebec 50%, #f6f7f8 100%);
+  position: absolute;
+  top: 0;
+  left: -50%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    left: 100%;
+  }
 }
 
