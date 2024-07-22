@@ -1,7 +1,11 @@
+body{
+  margin: 0px;
+}
 .header {
     display: flex;
     justify-content: space-between;
-    border: 1px solid black;
+    background-color: beige;
+    /* border: 1px solid black; */
 }
 .logo {
     width: 160px;
@@ -210,5 +214,10 @@
 
 .res-container a {
   text-decoration: none;
+}
+
+.user-card {
+  padding: 10px;
+  border: 1px solid black;
 }
 
