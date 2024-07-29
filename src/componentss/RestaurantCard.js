@@ -28,7 +28,7 @@ const RestaurantCard = (props) => {
       </div>
 
       <div className="res-card-content">
-        <h3>{name}</h3>
+        <h3 className="font-bold">{name}</h3>
         <div className="rating">
           <i className="fa fa-star"></i> {avgRating} Stars
         </div>
