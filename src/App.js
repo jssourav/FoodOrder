@@ -7,6 +7,7 @@ import About from "./componentss/About";
 import Contact from "./componentss/Contact";
 import Error from "./componentss/Error";
 import RestaurantMenu from "./componentss/RestaurantMenu";
+import Footer from "./componentss/Footer";
 // import Grocery from "./componentss/Grocery";
 const Grocery = lazy(() => import("./componentss/Grocery"));
 
@@ -31,6 +32,7 @@ const AppLayout = () => {
     <div className="app">
       <Header />
       <Outlet />
+      <Footer />
     </div>
   );
 };
