@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { GET_RESTAURENTS } from "../utils/constants";
@@ -11,6 +11,8 @@ const Body = () => {
   const [searchText, setSearchText] = useState("");
   const isOnline = useOnline();
 
+  const RestaurentCardWithPromotedLabel = withPromotedLabel(RestaurantCard);
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -18,7 +20,6 @@ const Body = () => {
   const fetchData = async () => {
     const data = await fetch(GET_RESTAURENTS);
     const json = await data.json();
-    console.log(json);
     setListsOfRestaurants(
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
@@ -72,7 +73,11 @@ const Body = () => {
             to={"/restaurants/" + restaurant.info.id}
             key={restaurant.info.id}
           >
-            <RestaurantCard resData={restaurant} />
+            {restaurant.info.aggregatedDiscountInfoV3 ? (
+              <RestaurentCardWithPromotedLabel resData={restaurant} />
+            ) : (
+              <RestaurantCard resData={restaurant} />
+            )}
           </Link>
         ))}
       </div>

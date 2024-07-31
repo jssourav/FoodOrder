@@ -2,6 +2,7 @@ import { CDN_URL } from "../utils/constants";
 
 const RestaurantCard = (props) => {
   const { resData } = props;
+
   const {
     cloudinaryImageId,
     avgRating,
@@ -21,9 +22,7 @@ const RestaurantCard = (props) => {
       <div className="offer-container">
         <div className="offer">
           {aggregatedDiscountInfoV3 &&
-            aggregatedDiscountInfoV3?.header +
-              " " +
-              aggregatedDiscountInfoV3?.subHeader}
+            `${aggregatedDiscountInfoV3.header} ${aggregatedDiscountInfoV3.subHeader}`}
         </div>
       </div>
 
@@ -41,6 +40,19 @@ const RestaurantCard = (props) => {
       </div>
     </div>
   );
+};
+
+export const withPromotedLabel = (RestaurantCard) => {
+  return (props) => {
+    return (
+      <>
+        <label className="absolute bg-black text-white m-3 p-2 rounded-lg z-10">
+          Promoted
+        </label>
+        <RestaurantCard {...props} />
+      </>
+    );
+  };
 };
 
 export default RestaurantCard;
