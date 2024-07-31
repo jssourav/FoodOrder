@@ -1,15 +1,15 @@
 import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
-import Header from "./componentss/Header";
-import Body from "./componentss/Body";
+import Header from "./components/Header";
+import Body from "./components/Body";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
-import About from "./componentss/About";
-import Contact from "./componentss/Contact";
-import Error from "./componentss/Error";
-import RestaurantMenu from "./componentss/RestaurantMenu";
-import Footer from "./componentss/Footer";
+import About from "./components/About";
+import Contact from "./components/Contact";
+import Error from "./components/Error";
+import RestaurantMenu from "./components/RestaurantMenu";
+import Footer from "./components/Footer";
 // import Grocery from "./componentss/Grocery";
-const Grocery = lazy(() => import("./componentss/Grocery"));
+const Grocery = lazy(() => import("./components/Grocery"));
 
 /**
  *
@@ -29,7 +29,7 @@ const Grocery = lazy(() => import("./componentss/Grocery"));
 
 const AppLayout = () => {
   return (
-    <div className="app">
+    <div className="app flex flex-col min-h-screen">
       <Header />
       <Outlet />
       <Footer />
