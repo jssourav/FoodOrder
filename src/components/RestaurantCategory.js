@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import ItemList from "./ItemList";
 
 const RestaurantCategory = ({ data, showItems, setShowIndex }) => {
+  const [showCurrentItem, setShowCurrentItem] = useState(showItems);
   const handelClick = () => {
     setShowIndex();
+    setShowCurrentItem(!showCurrentItem);
   };
   return (
     <div>
@@ -17,11 +19,15 @@ const RestaurantCategory = ({ data, showItems, setShowIndex }) => {
           </span>
           <span>
             <i
-              className={showItems ? "fa fa-arrow-up" : "fa fa-arrow-down"}
+              className={
+                showItems && showCurrentItem
+                  ? "fa fa-arrow-up"
+                  : "fa fa-arrow-down"
+              }
             ></i>
           </span>
         </div>
-        {showItems && <ItemList items={data.itemCards} />}
+        {showItems && showCurrentItem && <ItemList items={data.itemCards} />}
       </div>
     </div>
   );

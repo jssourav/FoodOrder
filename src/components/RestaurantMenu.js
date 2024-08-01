@@ -1,4 +1,3 @@
-import { CDN_URL, GET_MENU } from "../utils/constants";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "./useRestaurantMenu";
@@ -13,7 +12,7 @@ const RestaurantMenu = () => {
 
   if (resInfo === null) return <Shimmer />;
 
-  const { name, cloudinaryImageId, cuisines, costForTwoMessage } =
+  const { name, cuisines, costForTwoMessage } =
     resInfo?.cards[2]?.card?.card?.info;
   const menu =
     resInfo?.cards[resInfo?.cards.length - 1]?.groupedCard?.cardGroupMap
