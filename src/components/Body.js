@@ -6,6 +6,29 @@ import { Link } from "react-router-dom";
 import useOnline from "../utils/useOnline";
 import UserContext from "../utils/UserContext";
 
+const findRestaurants = (allData) =>
+  allData
+    .filter((d) => d.card?.card?.["@type"].split(".").pop() === "GridWidget")
+    .filter(
+      (d) =>
+        d.card?.card?.gridElements?.infoWithStyle["@type"].split(".").pop() !==
+        "ImageInfoLayoutCard"
+    )
+    .filter((d) => d.card.card.id === "top_brands_for_you")
+    .map((d) => d.card.card.gridElements.infoWithStyle.restaurants)[0];
+
+// const findRestaurants = (allData) => {
+//   const data = allData
+//     .filter((d) => d.card?.card?.["@type"].split(".").pop() === "GridWidget")
+//     .filter(
+//       (d) =>
+//         d.card?.card?.gridElements?.infoWithStyle["@type"].split(".").pop() !==
+//         "ImageInfoLayoutCard"
+//     )
+//     .map((d) => d.card?.card?.gridElements?.infoWithStyle?.restaurants);
+//   return data;
+// };
+
 const Body = () => {
   const [listsOfRestaurants, setListsOfRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
@@ -21,12 +44,10 @@ const Body = () => {
   const fetchData = async () => {
     const data = await fetch(GET_RESTAURENTS);
     const json = await data.json();
-    setListsOfRestaurants(
-      json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-    setFilteredRestaurants(
-      json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
+    const restaurantDetails = findRestaurants(json?.data?.cards);
+    console.log(restaurantDetails, "restaurantDetails");
+    setListsOfRestaurants(restaurantDetails);
+    setFilteredRestaurants(restaurantDetails);
   };
 
   const { loggedinUser, setUserName } = useContext(UserContext);
@@ -80,7 +101,7 @@ const Body = () => {
         {filteredRestaurants.map((restaurant) => (
           <Link
             to={"/restaurants/" + restaurant.info.id}
-            key={restaurant.info.id}
+            key={restaurant.info.id + restaurant.info.name}
           >
             {/* {restaurant.info.aggregatedDiscountInfoV3 ? (
               <RestaurentCardWithPromotedLabel resData={restaurant} />
