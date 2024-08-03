@@ -17,18 +17,6 @@ const findRestaurants = (allData) =>
     .filter((d) => d.card.card.id === "top_brands_for_you")
     .map((d) => d.card.card.gridElements.infoWithStyle.restaurants)[0];
 
-// const findRestaurants = (allData) => {
-//   const data = allData
-//     .filter((d) => d.card?.card?.["@type"].split(".").pop() === "GridWidget")
-//     .filter(
-//       (d) =>
-//         d.card?.card?.gridElements?.infoWithStyle["@type"].split(".").pop() !==
-//         "ImageInfoLayoutCard"
-//     )
-//     .map((d) => d.card?.card?.gridElements?.infoWithStyle?.restaurants);
-//   return data;
-// };
-
 const Body = () => {
   const [listsOfRestaurants, setListsOfRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
