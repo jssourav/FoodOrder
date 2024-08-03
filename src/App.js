@@ -33,7 +33,7 @@ const AppLayout = () => {
 
   useEffect(() => {
     const data = {
-      name: "Sourav",
+      name: "Sourav Nag",
     };
     setUserName(data.name);
   }, []);
