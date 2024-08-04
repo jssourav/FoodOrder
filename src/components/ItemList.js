@@ -1,6 +1,14 @@
+import { useDispatch } from "react-redux";
 import { CDN_URL } from "../utils/constants";
+import { addItem } from "../utils/cartSlice";
 
 const ItemList = ({ items }) => {
+  const dispatch = useDispatch();
+
+  const handleAddItem = (item) => {
+    // Dispatch an action
+    dispatch(addItem(item));
+  };
   return (
     <div className="space-y-4">
       {items.map((item) => (
@@ -10,7 +18,7 @@ const ItemList = ({ items }) => {
         >
           <div className="md:mr-4">
             <h2 className="text-2xl my-2 flex">{item.card?.info?.name}</h2>
-            <div className="text-xl text-gray-700 my-2">
+            <div className="text-xl text-gray-700 my-2 text-left">
               ₹
               {item.card?.info?.price
                 ? item.card?.info?.price / 100
@@ -30,7 +38,7 @@ const ItemList = ({ items }) => {
               )}
             </div>
             {item.card?.info?.description && (
-              <div className="mt-2 text-gray-600">
+              <div className="mt-2 text-gray-600 text-left">
                 {item.card?.info?.description?.substring(0, 150)}...
               </div>
             )}
@@ -45,7 +53,10 @@ const ItemList = ({ items }) => {
               }
               alt={item.card?.info?.name}
             />
-            <button className="mt-[138px] bg-green-500 text-white px-4 py-2 rounded absolute ">
+            <button
+              className="mt-[138px] bg-green-500 text-white px-4 py-2 rounded absolute"
+              onClick={() => handleAddItem(item)}
+            >
               ADD
             </button>
             <span className="text-sm text-gray-500 mt-6">Customisable</span>

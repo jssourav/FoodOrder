@@ -30,3 +30,11 @@ Our whole code needs to be bundled together, needs to be minified, cashed, compr
  (Normal JS utility Functions)
  - useState() - generage state variables
  - useEffects()
+
+ # Redux
+ - insatall @reduxjs/toolkit and react-redux
+ - Build our store
+ - Connect our store to our app
+ - Slice (Cart slice)
+ - dispatch(action)
+ - Selector

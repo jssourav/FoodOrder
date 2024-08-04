@@ -33,7 +33,8 @@ const Body = () => {
     const data = await fetch(GET_RESTAURENTS);
     const json = await data.json();
     const restaurantDetails = findRestaurants(json?.data?.cards);
-    console.log(restaurantDetails, "restaurantDetails");
+    console.log(json);
+    // console.log(restaurantDetails, "restaurantDetails");
     setListsOfRestaurants(restaurantDetails);
     setFilteredRestaurants(restaurantDetails);
   };
@@ -45,7 +46,7 @@ const Body = () => {
   return listsOfRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="body">
+    <div className="body mt-16">
       <div className="flex flex-wrap justify-center mt-10">
         <input
           type="text"

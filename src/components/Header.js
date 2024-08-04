@@ -3,12 +3,16 @@ import { Link } from "react-router-dom";
 import useOnline from "../utils/useOnline";
 import logo from "../../assets/images/logo.png";
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [btnName, setBtnName] = useState("Login");
   const [isNavOpen, setIsNavOpen] = useState(false);
   const isOnline = useOnline();
   const user = useContext(UserContext);
+
+  const cartItems = useSelector((store) => store.cart.items);
+  // console.log(cartItems, "cartItems");
 
   // if no dependancy array => useEffect is called every render
   // if dependancy array is empty = [] => useEffect is called on initial render(just once)
@@ -18,7 +22,7 @@ const Header = () => {
   // });
   return (
     <>
-      <nav className="bg-white border-gray-200 dark:bg-gray-900">
+      <nav className="bg-white border-gray-200 dark:bg-gray-900 fixed w-full z-20">
         <div className="flex flex-wrap items-center justify-between mx-auto p-4">
           <Link
             to="/"
@@ -96,8 +100,13 @@ const Header = () => {
                   Grocery
                 </Link>
               </li>
-              <li className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-                Cart
+              <li>
+                <Link
+                  to="/cart"
+                  className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                >
+                  Cart ({cartItems.length})
+                </Link>
               </li>
               <li
                 className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent cursor-pointer"
